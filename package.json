@@ -1,0 +1,21 @@
+{
+  "name": "express-scaffold",
+  "version": "1.0.0",
+  "description": "Quick start express application",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -w --recursive",
+    "express": "nodemon src/express/app.js"
+  },
+  "author": "Jon Hunter",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "should": "^11.2.1",
+    "supertest": "^3.0.0"
+  }
+}
