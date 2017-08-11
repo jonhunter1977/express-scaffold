@@ -1,9 +1,11 @@
 'use strict';
 
-const routeError = require('../../../src/express/middleware/route-error.js');
 const request = require('supertest');
 const should = require('should');
 const express = require('express');
+
+const routeError = require('../../../src/express/routes/route-error.js');
+const RouteErrorObject = require('../../../src/express/objects/route-error.js');
 
 describe('Route error', () => {
 
@@ -15,7 +17,7 @@ describe('Route error', () => {
 
   const setUpApp = (mockErrorRoute) => {
     app = express();
-    app.get('/', mockErrorRoute);
+    app.all('/', mockErrorRoute);
     app.use(routeError);
   };
 
@@ -42,11 +44,7 @@ describe('Route error', () => {
   it('should return the set values if there is an error object', (done) => {
 
     mockRouteThatErrored = (req, res, next) => {
-      const err = {
-        code: 403,
-        message: 'Forbidden'
-      };
-      return next(err);
+      return next(new RouteErrorObject(403,'Forbidden'));
     };
 
     setUpApp(mockRouteThatErrored);
